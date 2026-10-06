@@ -1,0 +1,12 @@
+# secrets: never in Git
+.env
+
+# things Python and the tools make on every run
+.venv/
+.venv-1/
+__pycache__/
+.pytest_cache/
+reports/
+gx/
+# the laptop copy of the database (CI uses Databricks)
+data/bank.db

@@ -1,0 +1,6 @@
+pytest>=9.0
+pytest-html>=4.1
+pandas>=2.2
+databricks-sql-connector>=4.0
+python-dotenv>=1.0
+great-expectations>=0.17

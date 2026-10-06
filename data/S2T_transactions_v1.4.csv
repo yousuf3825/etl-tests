@@ -1,0 +1,10 @@
+#,Target column,Data type,Source column,Transformation rule,Nulls
+1,transaction_id,STRING,txn_id,Copy as is. Must be unique. Duplicates go to the reject table.,No
+2,txn_date,DATE,txn_dt,Source is text in dd/MM/yyyy. Convert to a date. Invalid dates go to reject.,No
+3,txn_type,STRING,type,"DR, debit, Debit become DEBIT. CR, credit become CREDIT. REFUND stays REFUND.",No
+4,amount,"DECIMAL(12,2)",amt,"Text to decimal, 2 places. Refunds stay negative. ""N/A"" goes to reject.",No
+5,account_id,STRING,acct_no,Trim spaces. Must exist in the accounts table.,No
+6,branch_code,STRING,branch,Upper case. Unknown codes become UNK.,No
+7,channel,STRING,channel,Copy as is.,No
+8,load_date,DATE,none,The date the load ran.,No
+9,currency,STRING,ccy,Copy as is. INR for every row today.,Yes
