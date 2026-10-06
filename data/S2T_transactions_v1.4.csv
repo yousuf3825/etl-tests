@@ -5,6 +5,6 @@
 4,amount,"DECIMAL(12,2)",amt,"Text to decimal, 2 places. Refunds stay negative. ""N/A"" goes to reject.",No
 5,account_id,STRING,acct_no,Trim spaces. Must exist in the accounts table.,No
 6,branch_code,STRING,branch,Upper case. Unknown codes become UNK.,No
-7,channel,STRING,channel,Copy as is.,No
+7,channel,STRING,channel,Copy as is.,Yes
 8,load_date,DATE,none,The date the load ran.,No
 9,currency,STRING,ccy,Copy as is. INR for every row today.,Yes
