@@ -1,0 +1,39 @@
+name: data tests
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    - cron: "30 0 * * *"          # every day at 00:30 UTC, which is 6:00 am in India
+  workflow_dispatch:              # adds a "Run workflow" button in the Actions tab
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Get the code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install packages
+        run: pip install -r requirements.txt
+
+      - name: Run the critical tests on Databricks
+        env:
+          DATABRICKS_SERVER_HOSTNAME: ${{ secrets.DATABRICKS_SERVER_HOSTNAME }}
+          DATABRICKS_HTTP_PATH: ${{ secrets.DATABRICKS_HTTP_PATH }}
+          DATABRICKS_TOKEN: ${{ secrets.DATABRICKS_TOKEN }}
+        run: >
+          pytest --target databricks -m critical -k "not release"
+          --junitxml=reports/junit.xml --html=reports/report.html --self-contained-html
+
+      - name: Save the reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: reports/
