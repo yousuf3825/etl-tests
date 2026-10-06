@@ -4,7 +4,7 @@ from decimal import Decimal, InvalidOperation
 
 import pandas as pd
 
-TYPE_MAP = {"DEBIT": "DEBIT", "DR": "DEBIT", "debit": "DEBIT",
+TYPE_MAP = {"DEBIT": "DEBIT", "DR": "DEBIT", "debit": "DEBIT", "Debit": "DEBIT",
             "CREDIT": "CREDIT", "CR": "CREDIT", "credit": "CREDIT",
             "REFUND": "REFUND"}
 KNOWN_BRANCHES = {"CHN01", "CHN02", "CHN03", "CHN04", "CBE01", "CBE02", "MDU01", "TRY01"}
